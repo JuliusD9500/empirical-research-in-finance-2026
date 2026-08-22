@@ -1,0 +1,14 @@
+# Latex Helper Files
+
+*.aux 
+*.log
+*.out
+*.gz
+
+# MacOS Desktop Services Store
+
+.DS_Store
+
+# Temporary experiments
+
+tmp/
