@@ -1,11 +1,35 @@
-# package installation
-install.packages("renv")
+# =======================================================
+# Empirical Research in Finance - initial setup
+#
+# Purpose: Installs `renv` to create a reproducible env,
+#          then the required packages (their dependencies) 
+#          and restarts R session for a clean environment.
+# Input: ---
+# Output: ---
+# =======================================================
 
-# create package environment 
-renv::init()
+renv_installed <- requireNamespace("renv", quietly = TRUE)
 
-install.packages("haven") # read Stata files
-install.packages("tidyverse") # collection for data science
+if (!renv_installed) { # ! is logical not
+  install.packages("renv")
+}
 
+env_configured <- file.exists("renv/activate.R")
 
-renv::snapshot()
+if (!env_configured) {
+  renv::init(
+    bare = TRUE,
+    restart = FALSE # prevents interruption of script
+    ) 
+  
+  renv::install(prompt = FALSE) # installs packages needed in other scripts (e.g., tidyverse, haven, etc.)
+  renv::snapshot(prompt = FALSE) # makes renv.lock
+} else {
+  renv::restore(prompt = FALSE) # restores packages from renv.lock
+}
+
+renv::install("rstudioapi", prompt = FALSE) # to restart session afterwards
+
+if (rstudioapi::hasFun("restartSession")) {
+    rstudioapi::restartSession()
+}
