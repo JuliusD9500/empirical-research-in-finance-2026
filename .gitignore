@@ -12,3 +12,6 @@
 # Temporary experiments
 
 tmp/
+
+# Posit project files stay local
+.posit/
