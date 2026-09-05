@@ -13,5 +13,5 @@
 
 tmp/
 
-# Posit project files stay local
+# Posit settings
 .posit/

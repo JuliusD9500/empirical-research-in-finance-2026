@@ -18,7 +18,6 @@ env_configured <- file.exists("renv/activate.R")
 
 if (!env_configured) {
   renv::init(
-    bare = TRUE,
     restart = FALSE # prevents interruption of script
     ) 
   
