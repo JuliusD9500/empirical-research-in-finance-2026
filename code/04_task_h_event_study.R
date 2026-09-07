@@ -73,6 +73,5 @@ n_different
 # 30 firms are UK-listed but do not meet the 10% sales-exposure threshold
 # 44 firms have >=10% UK sales exposure but are not UK-listed.
 # This indicates the two definitions disagree. 
-# aspects of a firm's UK relationship (revenue exposure vs.
-# listing venue), not the same underlying concept.
+# aspects of a firm's UK relationship (revenue exposure vs.listing venue), not the same underlying concept.
 
