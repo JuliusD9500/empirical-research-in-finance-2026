@@ -16,13 +16,13 @@ load("data/clean/value_effect_panel_clean.rda")
 task_a_df <- data |>
   haven::zap_label() |>
   transmute(
-    `Excess return ¹ ²`           = excess_return_w * 100,
+    `Excess return ¹ ²`         = excess_return_w * 100,
     `Book-to-market ²`          = b2m_w,
     `Leverage ²`                = lev_w * 100,
     `Profitability ²`           = prof_w * 100,
     `Dividend yield ²`          = div_yield_w * 100,
-    `Size`                    = size,
-    `Market capitalisation`   = market_cap
+    `Size`                      = size,
+    `Market capitalisation`     = market_cap
   )
 
 # Define function for percentiles
