@@ -5,7 +5,17 @@
 # Input:
 # Output:
 # =======================================================
+library(tidyverse)
+library(haven)
+
+#Load cleaned firm panel 
+load("data/clean/value_effect_panel_clean.rda")  
+
+#Load event-study summary file (no cleaning needed)
+cars <- haven::read_dta("data/raw/cars_summary.dta") |> haven::zap_label()
+
 # 1 . Event design 
+
 event_date <- as.Date("2016-06-24") # Brexit announcement 
 event_windows <- list(
   "[-1,+1]" = c(start = as.Date("2016-06-23"), end = as.Date("2016-06-27")),
