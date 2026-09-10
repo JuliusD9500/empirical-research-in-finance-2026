@@ -6,13 +6,14 @@
 # Output: results/table_a.tex (descriptive statistics table)
 # =======================================================
 
+# %% Load required packages
 library(tidyverse) # data wrangling
 library(modelsummary) # descriptive statistics table (incl. TeX output)
 
-# Load cleaned data
+# %% Load cleaned data
 load("data/clean/value_effect_panel_clean.rda")
 
-# Choose features for task
+# %% Choose features for task
 task_a_df <- data |>
   haven::zap_label() |>
   transmute(

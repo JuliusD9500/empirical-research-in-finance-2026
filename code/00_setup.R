@@ -8,6 +8,9 @@
 # Output: ---
 # =======================================================
 
+# Prefer macOS-binaries where available, fall back to source if necessary (e.g., for Apple Silicon)
+options(pkgType = "both")
+
 renv_installed <- requireNamespace("renv", quietly = TRUE)
 
 if (!renv_installed) { # ! is logical not
@@ -21,7 +24,7 @@ if (!env_configured) {
     restart = FALSE # prevents interruption of script
     ) 
   
-  renv::install(prompt = FALSE) # installs packages needed in other scripts (e.g., tidyverse, haven, etc.)
+  renv::install(prompt = FALSE) # installs packages needed in other scripts (e.g. tidyverse, haven, etc.)
   renv::snapshot(prompt = FALSE) # makes renv.lock
 } else {
   renv::restore(prompt = FALSE) # restores packages from renv.lock
