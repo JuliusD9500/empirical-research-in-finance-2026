@@ -75,3 +75,107 @@ n_different
 # This indicates the two definitions disagree. 
 # aspects of a firm's UK relationship (revenue exposure vs.listing venue), not the same underlying concept.
 
+# (3) Statistical tests -- UK sales exposure
+
+# CAR = cumulative abnormal return, SE = standard error,
+# t-stat = CAR / SE, sig = significance stars based on the t-stat
+
+windows <- list(
+  "Event day" = 0,
+  "[-1,+1]"   = -1:1,
+  "[-2,+2]"   = -2:2
+)
+
+# sum daily AARs into CAR, scale SE by sqrt(window length), and get
+# treated/control/difference. for the difference row we add variances
+# (not SEs directly) since treated and control are independent groups
+car_table_exposure <- map_dfr(names(windows), function(win_name) {
+  win_days <- windows[[win_name]]
+
+  cars |>
+    filter(def == "uk_exposure", evttime %in% win_days) |>
+    group_by(group) |>
+    summarise(
+      CAR = sum(aar_m),
+      SE  = unique(aar_se) * sqrt(length(win_days)),
+      .groups = "drop"
+    ) |>
+    pivot_wider(names_from = group, values_from = c(CAR, SE)) |>
+    mutate(
+      CAR_difference = CAR_treated - CAR_control,
+      SE_difference  = sqrt(SE_treated^2 + SE_control^2),
+      window = win_name
+    )
+}) |>
+  pivot_longer(
+    cols = c(CAR_treated, CAR_control, CAR_difference, SE_treated, SE_control, SE_difference),
+    names_to = c(".value", "group"),
+    names_pattern = "(CAR|SE)_(.*)"
+  ) |>
+  mutate(
+    t_stat = CAR / SE,
+    sig = case_when(
+      2 * (1 - pnorm(abs(t_stat))) < 0.01 ~ "***",
+      2 * (1 - pnorm(abs(t_stat))) < 0.05 ~ "**",
+      2 * (1 - pnorm(abs(t_stat))) < 0.10 ~ "*",
+      TRUE ~ ""
+    )
+  ) |>
+  select(window, group, CAR, SE, t_stat, sig)
+
+car_table_exposure
+
+# results:
+# treated firms drop around 4.7-4.9% in every window and it's super
+# significant (t around -13 to -29). control firms barely move at all
+# and aren't significant. the difference between the two groups is
+# also huge and significant (t around -12 to -25), so UK sales
+# exposure really does seem to explain a big chunk of the reaction
+
+# ============================================================
+# (4) Robustness check -- UK listing status
+# ============================================================
+# same test as (3), just swapping in the UK listing dummy instead
+car_table_listed <- map_dfr(names(windows), function(win_name) {
+  win_days <- windows[[win_name]]
+
+  cars |>
+    filter(def == "uk_listed", evttime %in% win_days) |>
+    group_by(group) |>
+    summarise(
+      CAR = sum(aar_m),
+      SE  = unique(aar_se) * sqrt(length(win_days)),
+      .groups = "drop"
+    ) |>
+    pivot_wider(names_from = group, values_from = c(CAR, SE)) |>
+    mutate(
+      CAR_difference = CAR_treated - CAR_control,
+      SE_difference  = sqrt(SE_treated^2 + SE_control^2),
+      window = win_name
+    )
+}) |>
+  pivot_longer(
+    cols = c(CAR_treated, CAR_control, CAR_difference, SE_treated, SE_control, SE_difference),
+    names_to = c(".value", "group"),
+    names_pattern = "(CAR|SE)_(.*)"
+  ) |>
+  mutate(
+    t_stat = CAR / SE,
+    sig = case_when(
+      2 * (1 - pnorm(abs(t_stat))) < 0.01 ~ "***",
+      2 * (1 - pnorm(abs(t_stat))) < 0.05 ~ "**",
+      2 * (1 - pnorm(abs(t_stat))) < 0.10 ~ "*",
+      TRUE ~ ""
+    )
+  ) |>
+  select(window, group, CAR, SE, t_stat, sig)
+
+car_table_listed
+
+# results:
+# this time both treated AND control firms drop by about the same
+# amount (around 1-1.2%), and both are significant on their own. but
+# the difference between them is tiny and never significant (t only
+# around 0.36-0.40). so being UK-listed doesn't really separate firms
+# that got hit harder from ones that didn't -- unlike sales exposure,
+# this definition doesn't seem to capture real Brexit exposure
