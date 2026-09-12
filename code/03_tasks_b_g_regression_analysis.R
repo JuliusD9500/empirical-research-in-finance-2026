@@ -99,7 +99,7 @@ print(summary(model_f))
 test_f <- anova(model_d, model_f)
 print(test_f)
 
-# %% (g) Firm-clustered standard errors
+# %% (g) Firm-clustered standard errors - not final
 n_firms <- n_distinct(data$firm_id)
 vcov_g <- vcovCL(model_f, cluster = ~ firm_id, type = "HC1")
 model_g <- coeftest(model_f, vcov. = vcov_g, df = n_firms - 1)
@@ -112,7 +112,7 @@ print(test_g)
 profitability_effect_pp <- coef(model_f)["prof_w"] * 0.10 * 100
 print(profitability_effect_pp)
 
-# %% Regression table
+# %% Regression table - not final
 # Combine clustered inference from (g) with model fit from (f)
 model_g_table <- modelsummary(model_g, output = "modelsummary_list")
 model_g_table$glance <- get_gof(model_f)
