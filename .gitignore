@@ -1,9 +1,15 @@
-# Latex Helper Files
+# LaTeX build artifacts
 
-*.aux 
+*.aux
 *.log
 *.out
 *.gz
+*.fdb_latexmk
+*.fls
+*.xdv
+*.toc
+*.lof
+*.lot
 
 # MacOS Desktop Services Store
 
