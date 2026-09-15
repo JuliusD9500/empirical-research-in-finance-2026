@@ -1,0 +1,30 @@
+\section*{Methodology}
+
+I would estimate a difference-in-differences model by OLS to compare investment changes in exposed and unexposed firms. Here, $i$ identifies firms and $t$ identifies quarters. Investment ($I_{it}$) is quarterly capex as a percentage of assets at the end of 2023. Exposure ($E_i$) is the production-location dummy and cash holdings ($C_i$) are the cash-to-assets ratio at the end of 2023. The dummy ($\mathrm{Post}_t$) equals one from 2024Q4 onwards and zero before Helene. The main regression is:
+
+\begin{equation*}
+\begin{aligned}
+I_{it} ={}& a_i + \lambda_{s(i),t}
+  && \text{firm and industry-quarter fixed effects} \\
+&+ b_1(E_i \times \mathrm{Post}_t)
+  && \text{dummy interaction (DiD)} \\
+&+ b_2(E_i \times \mathrm{Post}_t \times C_i)
+  && \text{cash slope interaction (DiD)} \\
+&+ b_3(\mathrm{Post}_t \times C_i)
+  && \text{cash slope interaction (Post)} \\
+&+ b_4(\mathrm{Size}_i \times \mathrm{Post}_t)
+  && \text{control interaction (size)} \\
+&+ b_5(\mathrm{Leverage}_i \times \mathrm{Post}_t)
+  && \text{control interaction (leverage)} \\
+&+ u_{it}
+  && \text{error term}.
+\end{aligned}
+\end{equation*}
+
+Firm fixed effects ($a_i$) absorb persistent differences between firms. Industry-quarter fixed effects ($\lambda_{s(i),t}$) capture developments shared by firms in the same two-digit SIC industry in each quarter. Firm effects also absorb $E_i$, $C_i$ and $E_i \times C_i$. Industry-quarter effects absorb $\mathrm{Post}_t$.
+
+$\mathrm{Size}_i$ is the natural logarithm of total assets and $\mathrm{Leverage}_i$ is total debt divided by total assets, both measured at the end of 2023. Their interactions with $\mathrm{Post}_t$ allow investment changes to differ by initial firm size and debt burden. Additional controls (e.g. profitability or asset intensity) could be considered as a specification check.
+
+The term $\mathrm{Post}_t \times C_i$ accounts for general investment changes associated with cash among unexposed firms. The coefficient $b_2$ therefore measures how the exposure-related investment response differs with initial cash holdings. H1 predicts $b_2 > 0$. A ten-percentage-point difference in cash/assets corresponds to a difference of $0.10b_2$ percentage points in the quarterly investment response. I would test $H_0: b_2 = 0$ using standard errors clustered by firm and report a 95\% confidence interval. A positive estimate with a confidence interval above zero would support H1.
+
+The comparison assumes that, without Helene, exposed and unexposed firms would have followed comparable investment trends at similar cash levels, conditional on the controls. Plots of investment before the storm would help assess this assumption, although they cannot establish it.
