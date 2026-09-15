@@ -1,0 +1,25 @@
+% Returns and test statistics from code/04_task_h_event_study.R.
+\begin{table}[H]
+  \centering
+  \singlespacing
+  \caption{Abnormal returns around the Brexit referendum result}
+  \label{tab:event_returns}
+  \begin{tabular}{@{}llrrr@{}}
+    \toprule
+    Definition & Window & Treated & Control & Difference \\
+    \midrule
+    UK sales & Event day & $-4.68^{***}$ ($-28.68$) & $-0.03$ ($-0.37$) & $-4.65^{***}$ ($-25.11$) \\
+    & $[-1,+1]$ & $-4.88^{***}$ ($-17.27$) & 0.10 (0.64) & $-4.97^{***}$ ($-15.52$) \\
+    & $[-2,+2]$ & $-4.93^{***}$ ($-13.51$) & $-0.06$ ($-0.33$) & $-4.86^{***}$ ($-11.75$) \\
+    \midrule
+    UK listing & Event day & $-1.04^{***}$ ($-5.54$) & $-1.12^{***}$ ($-13.28$) & 0.08 (0.40) \\
+    & $[-1,+1]$ & $-0.95^{***}$ ($-2.92$) & $-1.08^{***}$ ($-7.36$) & 0.13 (0.36) \\
+    & $[-2,+2]$ & $-1.05^{**}$ ($-2.50$) & $-1.22^{***}$ ($-6.45$) & 0.17 (0.36) \\
+    \bottomrule
+  \end{tabular}
+
+  \medskip
+  \begin{minipage}{\textwidth}
+    Notes. Group returns are in percent; differences are treated minus control in percentage points. Test statistics are in parentheses. Event-day values are average abnormal returns; longer windows report cumulative average abnormal returns. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+  \end{minipage}
+\end{table}

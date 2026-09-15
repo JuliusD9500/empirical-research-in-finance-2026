@@ -1,0 +1,55 @@
+\section*{Methodology and Results}
+
+% (b) Baseline regression
+We estimate pooled OLS regressions using the same 2,664 observations. In the baseline model (b), book-to-market has a positive coefficient of 0.0876 ($t=12.92$, $p<0.001$). A one-unit higher ratio is associated with an 8.76-percentage-point higher excess return in the following year.
+
+% (c) Full model with controls
+Model (c) adds size, leverage, profitability and dividend yield. For firm $i$ in year $t$, the model is
+\begin{equation}
+r^e_{i,t+1}=\alpha+\beta_B B_{it}+\beta_S Size_{it}
++\beta_L Lev_{it}+\beta_P Prof_{it}+\beta_D DY_{it}+\varepsilon_{it}.
+\label{eq:controls}
+\end{equation}
+Here, $r^e$ denotes excess returns, $B$ book-to-market, and the remaining variables the named firm characteristics. Returns and financial ratios enter in decimal form. The book-to-market coefficient falls to 0.0594 but remains significant ($p<0.001$). Size is negatively associated with returns ($p<0.001$), while profitability is positively associated ($p=0.036$). Leverage and dividend yield are not individually significant at 5\% ($p=0.532$ and $p=0.115$). Table~\ref{tab:regressions} consolidates all regression results.
+
+\input{group/tables/03_regressions}
+
+% (d) Different slopes for small and large firms
+We next replace continuous size with $Small_{it}$, which equals one when market capitalisation is below the full-sample median of EUR 44.92 million. Firms can change classification over time. Table~\ref{tab:small_firms} reports the annual counts.
+
+\input{group/tables/04_small_firms}
+
+To allow the book-to-market slope to differ by size, we estimate
+\begin{equation}
+\begin{aligned}
+r^e_{i,t+1}={}&\alpha+\beta_B B_{it}+\delta Small_{it}
++\gamma(B_{it}\times Small_{it})\\
+&+\beta_L Lev_{it}+\beta_P Prof_{it}+\beta_D DY_{it}+\varepsilon_{it}.
+\end{aligned}
+\label{eq:interaction}
+\end{equation}
+
+% Keep the hypotheses and their interpretation together on one page.
+\begin{samepage}
+The slope is $\beta_B$ for large firms and $\beta_B+\gamma$ for small firms. We reject $H_0\colon\gamma=0$ against $H_1\colon\gamma\neq0$ ($t=3.25$, $p=0.0012$). A one-unit higher book-to-market ratio is associated with returns 4.26 percentage points higher among large firms and 8.87 points higher among small firms. The difference of 4.62 points indicates an economically stronger value effect among small firms, although the regression cannot distinguish risk compensation from mispricing.
+\par
+\end{samepage}
+
+% (e) Joint test of no relationship in either size group
+No relationship in either group requires $H_0\colon\beta_B=\gamma=0$; the alternative is that at least one coefficient is non-zero. Comparing equation~\eqref{eq:interaction} with a model excluding both book-to-market terms gives $F(2,2657)=47.51$ ($p<0.001$). We reject the joint null. This agrees with column (c), while allowing the relationship to differ by firm size. The restricted model and test are included in the Appendix.
+
+% (f) Year and industry dummies
+Column (f) adds year effects $\lambda_t$ and two-digit SIC industry effects $\eta_{s(i,t)}$, omitting one reference category from each set,
+\begin{equation}
+\begin{aligned}
+r^e_{i,t+1}={}&\alpha+\beta_B B_{it}+\delta Small_{it}
++\gamma(B_{it}\times Small_{it})\\
+&+\beta_L Lev_{it}+\beta_P Prof_{it}+\beta_D DY_{it}
++\lambda_t+\eta_{s(i,t)}+\varepsilon_{it}.
+\end{aligned}
+\label{eq:dummies}
+\end{equation}
+Year effects capture common annual shocks; industry effects capture average differences across industries. Both book-to-market coefficients remain close to column (d)/(e) and significant at 1\%. Adjusted $R^2$ rises from 0.097 to 0.343, and the added dummies are jointly significant ($F(20,2637)=50.61$, $p<0.001$), supporting the richer specification.
+
+% (g) Clustered inference and economic interpretation
+Column (g) uses HC1 standard errors clustered by firm, allowing unequal error variances and dependence across observations of the same firm. Coefficients and model fit are unchanged because only the estimated uncertainty changes. Both book-to-market terms remain significant at 1\%. Profitability is positive and significant ($\hat\beta_P=0.1311$, $t=2.34$, $p=0.020$). Holding the other regressors fixed, a ten-percentage-point increase in profitability is associated with $0.1311\times0.10\times100=1.31$ percentage points higher subsequent excess returns.

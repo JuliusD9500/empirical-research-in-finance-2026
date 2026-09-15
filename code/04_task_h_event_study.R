@@ -22,7 +22,9 @@ event_windows <- list(
   "[-2,+2]" = c(start = as.Date("2016-06-22"), end = as.Date("2016-06-28"))
 )
 
-# The event window [-1, +1] and [-2, +2] are defined relative to the referendum result, which was announced on Friday, 24 June 2016. Since weekends and holidays are not considered trading days, for the event window [-1, +1], -1 falls on 23 June 2016 (Thursday) and +1 falls on 27 June 2016 (Monday, since the weekend of 25-26 June is skipped). Similarly, for the vent window [-2, +2], -2 falls on 28 June 2016 (Tuesday).  
+# The event date is Friday, 24 June 2016. The [-1,+1] window covers
+# 23, 24 and 27 June; [-2,+2] also includes 22 and 28 June.
+# The weekend of 25-26 June is excluded from both trading-day windows.
 
 # 2. Sample composition
 

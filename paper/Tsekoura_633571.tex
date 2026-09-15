@@ -1,5 +1,5 @@
 % !TEX program = xelatex
-\documentclass[11pt,a4paper,twocolumn]{article}
+\documentclass[11pt,a4paper]{article}
 
 % ===========================================================
 % Packages
@@ -9,7 +9,11 @@
 \usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage{setspace}
-\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Keep tables at their position in the text
+\usepackage[labelsep=period]{caption}
+\usepackage{listings} % Include the R scripts in the Appendix
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
 
 \begin{document}
 
@@ -17,6 +21,16 @@
 % Part I: Group Assignment
 % ===========================================================
 \input{group/titlepage}
+\begingroup
+\normalfont
+\onehalfspacing
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.25\baselineskip}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\captionsetup[table]{skip=4pt}
+\clubpenalty=10000 % Avoid a single paragraph line at the bottom of a page
+\widowpenalty=10000 % Avoid a single paragraph line at the top of a page
 \input{group/01_abstract}
 \input{group/02_data}
 \input{group/03_methodology_results}
@@ -24,6 +38,7 @@
 \input{group/05_conclusion}
 
 \clearpage
+\endgroup
 \input{group/06_appendix}
 
 % ===========================================================
@@ -31,7 +46,6 @@
 % ===========================================================
 \clearpage
 \input{individual/tsekoura/titlepage}
-\onecolumn
 \begingroup
 \normalfont
 \onehalfspacing
@@ -47,6 +61,6 @@
 
 \clearpage
 \endgroup
-\input{individual/tsekoura/07_appendix_ai}
+\input{individual/tsekoura/07_appendix}
 
 \end{document}

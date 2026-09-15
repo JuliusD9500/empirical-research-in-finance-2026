@@ -1,0 +1,42 @@
+% Values match results/table_b_g.tex.
+\begin{table}[H]
+  \centering
+  \singlespacing
+  \caption{One-year-ahead excess returns}
+  \label{tab:regressions}
+  \begin{tabular}{@{}lrrrrr@{}}
+    \toprule
+    & (b) & (c) & (d)/(e) & (f) & (g) \\
+    \midrule
+    Book-to-market & $0.088^{***}$ & $0.059^{***}$ & $0.043^{***}$ & $0.044^{***}$ & $0.044^{***}$ \\
+    & (0.007) & (0.008) & (0.010) & (0.008) & (0.010) \\
+    Size & & $-0.023^{***}$ & & & \\
+    & & (0.003) & & & \\
+    Small firm & & & 0.033 & $0.034^{*}$ & $0.034^{*}$ \\
+    & & & (0.022) & (0.019) & (0.020) \\
+    Book-to-market $\times$ Small & & & $0.046^{***}$ & $0.045^{***}$ & $0.045^{***}$ \\
+    & & & (0.014) & (0.012) & (0.013) \\
+    Leverage & & $-0.018$ & $-0.025$ & $-0.028$ & $-0.028$ \\
+    & & (0.029) & (0.029) & (0.025) & (0.024) \\
+    Profitability & & $0.149^{**}$ & $0.161^{**}$ & $0.131^{**}$ & $0.131^{**}$ \\
+    & & (0.071) & (0.071) & (0.062) & (0.056) \\
+    Dividend yield & & 0.529 & 0.330 & $0.500^{*}$ & $0.500^{*}$ \\
+    & & (0.336) & (0.336) & (0.288) & (0.290) \\
+    Constant & $0.033^{***}$ & $0.150^{***}$ & $0.031^{*}$ & $-0.139^{***}$ & $-0.139^{***}$ \\
+    & (0.011) & (0.022) & (0.017) & (0.024) & (0.025) \\
+    \midrule
+    Observations & 2,664 & 2,664 & 2,664 & 2,664 & 2,664 \\
+    $R^2$ & 0.059 & 0.085 & 0.099 & 0.349 & 0.349 \\
+    Adjusted $R^2$ & 0.059 & 0.083 & 0.097 & 0.343 & 0.343 \\
+    Year dummies & No & No & No & Yes & Yes \\
+    Industry dummies & No & No & No & Yes & Yes \\
+    Standard errors & OLS & OLS & OLS & OLS & Clustered \\
+    Firms & 230 & 230 & 230 & 230 & 230 \\
+    \bottomrule
+  \end{tabular}
+
+  \medskip
+  \begin{minipage}{\textwidth}
+    Notes. The dependent variable is excess return at $t+1$ in decimal form. All models use the same sample. Standard errors are in parentheses. Column (g) uses HC1 firm-clustered standard errors and 229 degrees of freedom for $t$-tests. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+  \end{minipage}
+\end{table}

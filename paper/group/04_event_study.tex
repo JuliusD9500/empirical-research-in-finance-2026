@@ -1,0 +1,19 @@
+\section*{Event Study}
+
+% (h.1) Event date and trading windows
+The event date is Friday, 24 June 2016, when the Brexit referendum result became known before trading. The $[-1,+1]$ window covers 23, 24 and 27 June; $[-2,+2]$ covers 22, 23, 24, 27 and 28 June. Both exclude the intervening weekend.
+
+% (h.2) Treatment definitions and sample composition
+Using 2015 classifications, UK sales exposure means at least 10\% of sales originate in the UK; the alternative treatment is a UK listing. The final panel contains 54 sales-exposed and 176 control firms, compared with 40 UK-listed and 190 control firms. Table~\ref{tab:exposure_groups} shows that the definitions disagree for 74 firms (32.2\%).
+
+\input{group/tables/05_exposure_groups}
+
+% (h.3) Tests based on the supplied group summaries
+We use the supplied group-level average abnormal returns and standard errors. Cumulative returns sum daily abnormal returns; their standard errors equal the daily standard error times $\sqrt{L}$ for $L$ trading days, assuming no correlation across days. For independent treated and control groups, $SE_{\mathrm{diff}}=\sqrt{SE_T^2+SE_C^2}$. Test statistics divide each return or difference by its standard error. Table~\ref{tab:event_returns} reports two-sided normal-approximation tests under both definitions.
+
+\input{group/tables/06_event_returns}
+
+% (h.3--5) Results, robustness and interpretation
+Sales-exposed firms lose 4.68\% on the event day, compared with 0.03\% for controls. The treated-minus-control difference is $-4.65$ percentage points and remains similar over three and five days ($-4.97$ and $-4.86$ points). All differences are significant at 1\%, whereas control-group returns are insignificant. Under the listing definition, both groups lose roughly 1\%, but none of their differences is significant.
+
+UK sales capture exposure to UK demand and revenues; a UK listing identifies a trading venue. The conclusion about differential losses therefore depends on the exposure measure. The supplied return file has no firm identifiers, so its aggregates cannot be recalculated for the filtered panel.

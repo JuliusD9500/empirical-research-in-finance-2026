@@ -1,0 +1,19 @@
+\section*{Data}
+
+% Dataset, coverage and source
+The assignment provides a simulated annual panel of German listed firms. The file \nolinkurl{value_effect_panel.dta} contains 3,060 firm-year observations for 255 firms from 2010 to 2021, linking characteristics in year \(t\) to excess returns in \(t+1\). The separate file \nolinkurl{cars_summary.dta} provides group-level abnormal returns and standard errors around the Brexit result. The cleaning steps below apply only to \nolinkurl{value_effect_panel.dta}.
+
+% Sample selection
+We exclude financial firms (two-digit SIC 60--69) because their balance sheets and leverage differ from those of non-financial firms. Positive assets, share prices and shares outstanding ensure valid ratios and log size. We also require complete identifiers and regression inputs. This leaves an unbalanced panel of 2,664 observations for 230 firms. Table~\ref{tab:sample_selection} documents each filter.
+
+\input{group/tables/01_sample_selection}
+
+% Treatment of extreme values
+To limit outlier influence, we winsorise excess returns, book-to-market, leverage, profitability and dividend yield at 1\% in each tail across the final sample, without removing observations. Market capitalisation retains its original values to preserve the plausible size distribution. Log size already compresses large differences, so we apply no further tail adjustment. Table~\ref{tab:descriptive_statistics} summarises the adjusted final sample.
+
+\input{group/tables/02_descriptive_statistics}
+
+% Economic interpretation of the observed ranges
+Annual excess returns average 15.68\% and range from $-44.29\%$ to 74.64\%, a wide but economically possible range for individual stocks. Book-to-market ranges from 0.10 to 2.90, covering valuations above and below book equity. Leverage of 0--67.19\%, profitability of $-10.61\%$ to 25.82\%, and dividend yields of 0--5.52\% are plausible ranges that include loss-making and non-dividend-paying firms.
+
+Market capitalisation ranges from EUR 0.41 million to EUR 24.49 billion. Its mean of EUR 324.48 million exceeds the EUR 44.92 million median, showing substantial right skew and motivating size controls. Log size ranges from $-0.90$ to 10.11; negative values indicate market capitalisation below EUR 1 million.

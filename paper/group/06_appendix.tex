@@ -1,0 +1,47 @@
+\section*{Appendix}
+
+The R code is also available in the \href{https://github.com/JuliusD9500/empirical-research-in-finance-2026}{project's GitHub repository}, in the \texttt{code/} directory.
+
+% Include the actual R files so the Appendix stays aligned with the code.
+Run the scripts from the repository root in the order below, with both supplied data files in \texttt{data/raw/}. After any R restart during setup, continue with data preparation.
+
+\begingroup
+\singlespacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\lstset{
+  language=R,
+  basicstyle=\ttfamily\normalsize,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  tabsize=2,
+  literate={¹}{{\textsuperscript{1}}}1
+           {²}{{\textsuperscript{2}}}1
+           {≈}{{$\approx$}}1
+           {≥}{{$\geq$}}1
+}
+
+\subsection*{A.1 Environment setup}
+\lstinputlisting{../code/00_setup.R}
+
+\clearpage
+\subsection*{A.2 Data preparation}
+\lstinputlisting{../code/01_data_preparation.R}
+
+\clearpage
+\subsection*{A.3 Descriptive statistics -- task (a)}
+\lstinputlisting{../code/02_task_a_descriptive_statistics.R}
+
+\clearpage
+\subsection*{A.4 Regressions and tests -- tasks (b)--(g)}
+\lstinputlisting{../code/03_tasks_b_g_regression_analysis.R}
+
+\clearpage
+\subsection*{A.5 Event study -- task (h)}
+\lstinputlisting{../code/04_task_h_event_study.R}
+\endgroup
