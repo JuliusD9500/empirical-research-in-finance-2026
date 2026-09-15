@@ -3,14 +3,14 @@
 #
 # Purpose: Estimate the return models and test the value effect.
 # Input: data/clean/value_effect_panel_clean.rda from code/01_data_preparation.R
-# Output: Tests, results/table_d.tex and results/table_b_g.tex
+# Output: Tests and tables (displayed in R)
 # =======================================================
 
 # %% Load required packages
 library(dplyr) # data wrangling
 library(sandwich) # covariance matrix
 library(lmtest) # coefficient tests
-library(modelsummary) # regression tables (incl. TeX output)
+library(modelsummary) # regression tables
 
 # %% Load cleaned data
 load("data/clean/value_effect_panel_clean.rda") # name: 'data'
@@ -63,9 +63,8 @@ table_d <- datasummary(
   output = "tinytable"
 )
 
-# Display and export table
+# Display table
 table_d
-tinytable::save_tt(table_d, "results/table_d.tex", overwrite = TRUE)
 
 # Book-to-market slopes by firm size (percentage points)
 slopes_d_pp <- c(
@@ -99,7 +98,7 @@ print(summary(model_f))
 test_f <- anova(model_d, model_f)
 print(test_f)
 
-# %% (g) Firm-clustered standard errors - not final
+# %% (g) Firm-clustered standard errors
 n_firms <- n_distinct(data$firm_id)
 vcov_g <- vcovCL(model_f, cluster = ~ firm_id, type = "HC1")
 model_g <- coeftest(model_f, vcov. = vcov_g, df = n_firms - 1)
@@ -112,7 +111,7 @@ print(test_g)
 profitability_effect_pp <- coef(model_f)["prof_w"] * 0.10 * 100
 print(profitability_effect_pp)
 
-# %% Regression table - not final
+# %% Regression table
 # Combine clustered inference from (g) with model fit from (f)
 model_g_table <- modelsummary(model_g, output = "modelsummary_list")
 model_g_table$glance <- get_gof(model_f)
@@ -157,6 +156,5 @@ table_b_g <- modelsummary(
   output = "tinytable"
 )
 
-# Display and export regression table
+# Display regression table
 table_b_g
-tinytable::save_tt(table_b_g, "results/table_b_g.tex", overwrite = TRUE)

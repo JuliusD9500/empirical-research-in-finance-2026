@@ -3,12 +3,12 @@
 #
 # Purpose: Describe the final sample, including units and sample size.
 # Input: data/clean/value_effect_panel_clean.rda from code/01_data_preparation.R
-# Output: results/table_a.tex (descriptive statistics table)
+# Output: Descriptive statistics table (displayed in R)
 # =======================================================
 
 # %% Load required packages
 library(tidyverse) # data wrangling
-library(modelsummary) # descriptive statistics table (incl. TeX output)
+library(modelsummary) # descriptive statistics table
 
 # %% Load cleaned data
 load("data/clean/value_effect_panel_clean.rda")
@@ -50,13 +50,12 @@ table_a <- datasummary(
   All(task_a_df) ~ Mean + SD + Min + P10 + Median + P90 + Max,
   data = task_a_df,
   add_columns = table_units,
-  fmt = 2,
+  fmt = 3,
   align = "llrrrrrrr",
   title = "Final-sample descriptive statistics",
   notes = paste("Observations:", n_observations, "|| Firms:", n_firms, "|| ¹ Returns refer to t+1 || ² Winsorized variables at 1% in each tail || All statistics use the single final sample"),
   output = "tinytable"
 )
 
-# Display and export tiny table
+# Display tiny table
 table_a
-tinytable::save_tt(table_a, "results/table_a.tex", overwrite = TRUE)

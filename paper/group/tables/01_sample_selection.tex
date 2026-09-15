@@ -1,18 +1,15 @@
-% Counts follow the filter order in code/01_data_preparation.R.
+% Maintained separately in LaTeX. Check values against the R analysis.
 \begin{table}[H]
   \centering
   \singlespacing
   \caption{Sample selection}
   \label{tab:sample_selection}
-
   \begin{tabular}{@{}lrr@{}}
     \toprule
     Sample restriction & Removed & Remaining \\
     \midrule
     Original panel & -- & 3,060 \\
     Exclude financial firms (SIC 60--69) & 300 & 2,760 \\
-    Positive total assets & 0 & 2,760 \\
-    Positive shares outstanding & 0 & 2,760 \\
     Positive share price & 10 & 2,750 \\
     Complete identifiers and regression inputs & 86 & 2,664 \\
     \bottomrule
@@ -20,6 +17,6 @@
 
   \medskip
   \begin{minipage}{\textwidth}
-    Notes. Filters are applied sequentially to firm-year observations; each exclusion is counted once. Winsorisation removes no observations.
+    Notes. Filters are applied sequentially. Each exclusion is counted once. Positive assets and shares ensure valid ratios. Neither check removes observations. Positive share prices also ensure valid log size. Complete inputs exclude missing values needed for identification or regression. Winsorisation removes no observations.
   \end{minipage}
 \end{table}

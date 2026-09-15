@@ -1,9 +1,12 @@
 \section*{Appendix}
 
-The R code is also available in the \href{https://github.com/JuliusD9500/empirical-research-in-finance-2026}{project's GitHub repository}, in the \texttt{code/} directory.
+The complete public repository contains the reports, data, R code and pinned package versions:
+\url{https://github.com/JuliusD9500/empirical-research-in-finance-2026}.
 
 % Include the actual R files so the Appendix stays aligned with the code.
-Run the scripts from the repository root in the order below, with both supplied data files in \texttt{data/raw/}. After any R restart during setup, continue with data preparation.
+Analyses were conducted in R. Tables were formatted separately in LaTeX.
+
+Run the scripts from the repository root in the order below, with both supplied data files in \texttt{data/raw/}. The setup restores the versions recorded in \texttt{renv.lock}. The analysis scripts display results in R. The report tables are maintained separately in \texttt{paper/group/tables/} and are not overwritten when the analysis is run.
 
 \begingroup
 \singlespacing
@@ -11,11 +14,13 @@ Run the scripts from the repository root in the order below, with both supplied 
 \setlength{\parskip}{0pt}
 \lstset{
   language=R,
-  basicstyle=\ttfamily\normalsize,
+  basicstyle=\ttfamily\fontsize{11}{14}\selectfont,
+  aboveskip=8pt,
+  belowskip=8pt,
   keywordstyle=\bfseries,
   commentstyle=\itshape,
   breaklines=true,
-  breakatwhitespace=false,
+  breakatwhitespace=true,
   columns=fullflexible,
   keepspaces=true,
   showstringspaces=false,
@@ -44,4 +49,5 @@ Run the scripts from the repository root in the order below, with both supplied 
 \clearpage
 \subsection*{A.5 Event study -- task (h)}
 \lstinputlisting{../code/04_task_h_event_study.R}
+
 \endgroup

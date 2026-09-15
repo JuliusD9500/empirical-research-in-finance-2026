@@ -7,6 +7,11 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{lmodern}
+\usepackage{fontspec}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0pt}
+  {-10pt}{5pt}{\normalfont\Large\bfseries}}
+\makeatother
 \usepackage{amsmath}
 \usepackage{setspace}
 \usepackage{booktabs} % Horizontal rules in tables
@@ -15,12 +20,20 @@
 \usepackage{listings} % Include the R scripts in the Appendix
 \usepackage[hidelinks,hypertexnames=false]{hyperref}
 
+\hypersetup{
+  pdftitle={Empirical Research in Finance - Tsekoura 633571},
+  pdfauthor={Julius Diesing and Angeliki Tsekoura},
+  pdfsubject={Group assignment and individual research proposal}
+}
+
 \begin{document}
 
 % ===========================================================
 % Part I: Group Assignment
 % ===========================================================
+\pdfbookmark[0]{Part I: Group assignment}{group}
 \input{group/titlepage}
+\setcounter{page}{1}
 \begingroup
 \normalfont
 \onehalfspacing
@@ -28,6 +41,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.25\baselineskip}
 \setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\tabcolsep}{5.5pt}
 \captionsetup[table]{skip=4pt}
 \clubpenalty=10000 % Avoid a single paragraph line at the bottom of a page
 \widowpenalty=10000 % Avoid a single paragraph line at the top of a page
@@ -39,22 +53,33 @@
 
 \clearpage
 \endgroup
+\begingroup
+\renewcommand{\thepage}{A-\arabic{page}}
+\setcounter{page}{1}
+\pdfbookmark[0]{Group appendix: R code}{group-code}
 \input{group/06_appendix}
+\clearpage
+\endgroup
 
 % ===========================================================
 % Part II: Individual Assignment
 % ===========================================================
 \clearpage
+\pdfbookmark[0]{Part II: Individual proposal}{individual}
 \input{individual/tsekoura/titlepage}
+\setcounter{page}{1}
+\setcounter{equation}{0}
 \begingroup
 \normalfont
 \onehalfspacing
 \raggedbottom
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.35\baselineskip}
+\setlength{\parskip}{0.25\baselineskip}
 \input{individual/tsekoura/01_background}
 \input{individual/tsekoura/02_expected_outcome}
+\newpage
 \input{individual/tsekoura/03_data}
+\newpage
 \input{individual/tsekoura/04_methodology}
 \input{individual/tsekoura/05_extensions_limitations}
 \input{individual/tsekoura/06_reference}

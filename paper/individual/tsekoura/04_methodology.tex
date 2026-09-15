@@ -1,13 +1,12 @@
 \section*{Methodology}
 
-I use difference-in-differences to compare treated and control firms before and after Helene. The main regression is:
+I would estimate a difference-in-differences model by OLS to compare changes in exposed and unexposed firms:
 \begin{equation*}
-  Y_{it} = a_i + \ell_t
-  + b \cdot \mathrm{Treated}_i \cdot \mathrm{Post}_t
-  + g \cdot X_{it} + e_{it}
+  Y_{it} = \alpha_i + \lambda_t
+  + \beta(E_i \times \mathrm{Post}_t) + \varepsilon_{it}.
 \end{equation*}
-$Y_{it}$ is first R\&D intensity (xrdq/atq) and then cash holdings (cheq/atq). I run the same regression twice, once for each outcome. $a_i$ are firm fixed effects. They control for everything about a firm that does not change over time, like industry or location. $\ell_t$ are quarter fixed effects. They control for shocks that hit all firms in the same quarter. $X_{it}$ are controls: size, leverage, profitability and Tobin's Q. Standard errors are clustered by firm, because the same firm is observed many times.
+Here, $i$ identifies firms and $t$ identifies quarters. I would run the regression separately for R\&D investment and cash holdings, as defined above. Firm fixed effects ($\alpha_i$) capture persistent differences between firms. Quarter fixed effects ($\lambda_t$) capture shocks shared across firms in a quarter, and $\varepsilon_{it}$ is the error term. Standard errors would be clustered by firm because observations from the same firm may be correlated over time.
 
-$\mathrm{Treated}_i$ is 1 if the firm is in a FEMA county for Helene, and 0 if not. $\mathrm{Post}_t$ is 1 from Q4 2024 on, and 0 before. I drop Q3 2024 because Helene happened at the very end of September, so that quarter is neither fully before nor after. The coefficient $b$ is what I care about. It shows how treated firms changed after Helene compared to control firms.
+$\mathrm{Post}_t$ equals one from 2024Q4 onwards and zero before Helene. The individual exposure and post-event dummies are absorbed by the fixed effects. The coefficient $\beta$ measures the change in exposed firms relative to unexposed firms, in percentage points of pre-storm assets.
 
-For H1 I expect $b < 0$ when $Y$ is R\&D, and $b > 0$ when $Y$ is cash. If both happen together, it supports the idea that firms cut R\&D to hold more cash as protection. This only works if both groups moved in a similar way before Helene. I will check this with a plot of average R\&D and cash for both groups, and by replacing Post with separate quarter dummies to see if there was any difference before.
+For R\&D, I would test $H_0: \beta \geq 0$ against $H_1: \beta < 0$. The complementary cash test is $H_0: \beta \leq 0$ against $H_1: \beta > 0$. I would use one-sided t-tests and report 95\% confidence intervals. The interpretation assumes that both groups would have followed parallel trends without Helene. Plots of pre-storm group means would help assess this assumption. A fall in R\&D alongside higher cash would fit the proposed liquidity response, while leaving its underlying motive unresolved.
