@@ -7,6 +7,7 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{lmodern}
+\usepackage{amsmath}
 \usepackage{setspace}
 \usepackage[hidelinks]{hyperref}
 
@@ -30,6 +31,13 @@
 % ===========================================================
 \clearpage
 \input{individual/tsekoura/titlepage}
+\onecolumn
+\begingroup
+\normalfont
+\onehalfspacing
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35\baselineskip}
 \input{individual/tsekoura/01_background}
 \input{individual/tsekoura/02_expected_outcome}
 \input{individual/tsekoura/03_data}
@@ -38,6 +46,7 @@
 \input{individual/tsekoura/06_reference}
 
 \clearpage
+\endgroup
 \input{individual/tsekoura/07_appendix_ai}
 
 \end{document}
